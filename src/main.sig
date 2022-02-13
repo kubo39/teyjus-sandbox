@@ -1,9 +1,13 @@
 sig main.
 
+% Basic definition.
+
 kind t_ty type.
 type int t_ty. /* 32-bit signed integer. */
 type long t_ty. /* 64-bit signed integer. */
 type string t_ty. /* UTF-8 string. */
+
+type pointer t_ty -> t_ty.  /* pointer type. (*T) */
 
 % parameter storage class as type constructor.
 
