@@ -9,6 +9,8 @@ type string t_ty. /* UTF-8 string. */
 
 type pointer t_ty -> t_ty.  /* pointer type. (*T) */
 
+type function t_ty -> t_ty -> t_ty.  /* function type. */
+
 % parameter storage class as type constructor.
 
 type ref t_ty -> t_ty.  /* ref T (T -> ref_T) */
