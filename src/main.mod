@@ -6,6 +6,7 @@ kind t_ty type.
 
 type int t_ty. /* 32-bit signed integer. */
 type long t_ty. /* 64-bit signed integer. */
+type float t_ty. /* 32-bit floating point. */
 type string t_ty. /* UTF-8 string. */
 
 type pointer t_ty -> t_ty.  /* pointer type. (*T) */
@@ -51,3 +52,10 @@ isSame (struct Ident1 Field1) (struct Ident2 Field2) :-
 type isIntegral t_ty -> o.
 isIntegral int.
 isIntegral long.
+
+type isFloating t_ty -> o.
+isFloating float.
+
+type isArithmetic t_ty -> o.
+isArithmetic T :- isIntegral T.
+isArithmetic T :- isFloating T.
