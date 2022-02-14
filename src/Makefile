@@ -14,6 +14,10 @@ depend: *.mod *.sig
 	$(TJROOT)/tjdepend *.mod > depend-stage
 	mv depend-stage depend
 
+.PHONY: run
+run: main.lp
+	$(TJROOT)/tjsim $<
+
 .PHONY: clean
 clean:
 	rm -f *.lpo *.lp depend
