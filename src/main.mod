@@ -29,6 +29,7 @@ type struct t_ident -> (list t_ty) -> t_ty.
 
 type isSame t_ty -> t_ty -> o.
 type isSame2 (list t_ty) -> (list t_ty) -> o.
+
 isSame int int.
 isSame long long.
 isSame string string.
@@ -36,8 +37,11 @@ isSame (pointer T1) (pointer T2) :- isSame T1 T2.
 isSame (function ArgTy1 RetTy1) (function ArgTy2 RetTy2) :-
        isSame ArgTy1 ArgTy2, isSame RetTy1 RetTy2.
 
+isSame2 nil nil.
 isSame2 (X :: Xs) (Y :: Ys) :-
-       isSame X Y.
+        isSame2 Xs Ys, isSame X Y.
+
+% ?- isSame (struct (ident "A") [int, int]) (struct (ident "B") [int, int]).
 isSame (struct IDENT1 Field1) (struct IDENT2 Field2) :-
        isSame2 Field1 Field2.
 
