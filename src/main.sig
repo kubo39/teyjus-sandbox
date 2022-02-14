@@ -10,6 +10,8 @@ type string t_ty. /* UTF-8 string. */
 
 type pointer t_ty -> t_ty.  /* pointer type. (*T) */
 
+type const t_ty -> t_ty.  /* const type. (const T) */
+
 type function t_ty -> t_ty -> t_ty.  /* function type. */
 
 % Struct.
