@@ -39,12 +39,6 @@ isSame (pointer T) (pointer T).
 isSame (const T) (const T).
 isSame (function ArgTy RetTy) (function ArgTy RetTy).
 
-type isSameIdent t_ident -> t_ident -> o.
-type isSameList (list t_ty) -> (list t_ty) -> o.
-isSameIdent Ident Ident.
-isSameList nil nil.
-isSameList (X :: Xs) (X :: Xs).
-
 % ?- isSame (struct (ident "A") [int, int]) (struct (ident "A") [int, int]).
 isSame (struct Ident Field) (struct Ident Field).
 
