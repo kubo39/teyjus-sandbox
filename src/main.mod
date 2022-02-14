@@ -28,7 +28,6 @@ type struct t_ident -> (list t_ty) -> t_ty.
 % built-in traits.
 
 type isSame t_ty -> t_ty -> o.
-type isSame2 (list t_ty) -> (list t_ty) -> o.
 
 isSame int int.
 isSame long long.
@@ -37,13 +36,17 @@ isSame (pointer T1) (pointer T2) :- isSame T1 T2.
 isSame (function ArgTy1 RetTy1) (function ArgTy2 RetTy2) :-
        isSame ArgTy1 ArgTy2, isSame RetTy1 RetTy2.
 
-isSame2 nil nil.
-isSame2 (X :: Xs) (Y :: Ys) :-
-        isSame2 Xs Ys, isSame X Y.
+type isSameIdent t_ident -> t_ident -> o.
+type isSameList (list t_ty) -> (list t_ty) -> o.
+isSameIdent Ident Ident.
+isSameList nil nil.
+isSameList (X :: Xs) (Y :: Ys) :-
+        isSameList Xs Ys, isSame X Y.
 
-% ?- isSame (struct (ident "A") [int, int]) (struct (ident "B") [int, int]).
-isSame (struct IDENT1 Field1) (struct IDENT2 Field2) :-
-       isSame2 Field1 Field2.
+% ?- isSame (struct (ident "A") [int, int]) (struct (ident "A") [int, int]).
+isSame (struct Ident1 Field1) (struct Ident2 Field2) :-
+       isSameIdent Ident1 Ident2,
+       isSameList Field1 Field2.
 
 type isIntegral t_ty -> o.
 isIntegral int.
