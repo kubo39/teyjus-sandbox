@@ -52,3 +52,15 @@ isFloating float.
 type isArithmetic t_ty -> o.
 isArithmetic T :- isIntegral T.
 isArithmetic T :- isFloating T.
+
+% is expression.
+
+type isExpression1 t_ty -> o. /* is(int) */
+isExpression1 T.
+
+type isExpression2 t_ty -> t_ty -> o. /* is(T : int) */
+isExpression2 T T.
+isExpression2 long int. /* TODO: specialization. */
+
+type isExpression3 t_ty -> t_ty -> o. /* is(T == int) */
+isExpression3 T T.

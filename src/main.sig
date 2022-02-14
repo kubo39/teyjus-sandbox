@@ -34,3 +34,9 @@ type isSame t_ty -> t_ty -> o.
 type isIntegral t_ty -> o.
 type isFloating t_ty -> o.
 type isArithmetic t_ty -> o.
+
+% is expression.
+
+type isExpression1 t_ty -> o. /* is(int) */
+type isExpression2 t_ty -> t_ty -> o. /* is(T : int) */
+type isExpression3 t_ty -> t_ty -> o. /* is(T == int) */
